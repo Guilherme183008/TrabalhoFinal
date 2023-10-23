@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('receitas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->string('tipo');
+            $table->int('qnt_ingredientes');
+            $table->double('tempo_preparo');
+            $table->double('valor_prato');
+            $table->timestamps();
+
+            $table->foreign('ingredientes_id')->references('id')->on('ingredientes');
+        });
     }
 
     /**
@@ -19,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('receitas');
     }
 };
