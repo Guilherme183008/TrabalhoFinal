@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('tipos_ingredientes', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->text('descricao');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('tipos_ingredientes');
     }
 };
