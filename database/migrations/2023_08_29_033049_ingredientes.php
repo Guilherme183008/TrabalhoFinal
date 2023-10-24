@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('ingredientes', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->double('quantidade_kg')->nullable();
+            $table->int('quantidade_un')->nullable();
+            $table->double('valor');
+            $table->double('quantidade_min');
+            $table->double('quantidade_max');
+            $table->timestamps();
+
+            $table->foreign('tipos_id')->references('id')->on('tipos_ingredientes');
+        });
     }
 
     /**
@@ -19,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('ingredientes');
     }
 };
